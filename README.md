@@ -20,6 +20,23 @@ GND: Ground pin. Connect this pin to ground connection.
 VCC: Power supply pin. Connect this pin to +5V DC supply.
 
 
+# Ubx GPS Protocol
+UBX Protocol Key Features
+u-blox GNSS receivers use a u-blox proprietary protocol to transmit GNSS data to a host computer. This protocol has the following key features:
+• Compact - uses 8 Bit Binary Data.
+• Checksum Protected - uses a low-overhead checksum algorithm
+• Modular - uses a 2-stage message identifier (Class- and Message ID)
+![image](https://user-images.githubusercontent.com/32397445/153752263-8f42d25f-e5c8-48c8-85fe-199f8a0fb761.png)
+  
+Every Message starts with 2 Bytes: 0xB5 0x62
+• A 1 Byte Class Field follows. The Class defines the basic subset of the message
+• A 1 Byte ID Field defines the message that is to follow
+• A 2 Byte Length Field is following. Length is defined as being the length of the payload, only. It does not
+include Sync Chars, Length Field, Class, ID or CRC fields. The number format of the length field is an
+unsigned 16-Bit integer in Little Endian Format.
+• The Payload is a variable length field.
+• CK_A and CK_B is a 16 Bit checksum.
+
 
 # Pin out of STM32F103C8
 
